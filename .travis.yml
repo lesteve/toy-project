@@ -2,6 +2,10 @@ language: python
 
 dist: trusty
 
+sudo: required
+
+services: docker
+
 python:
   - 2.7
   - 3.6
@@ -12,6 +16,6 @@ env:
 
 cache: pip
 
-install: pip install numpy==$NUMPY_VERSION
+install: docker build -t test-container --build-arg numpy_version=$NUMPY_VERSION .
 
-script: py.test
+script: docker run -v $PWD:$PWD test-container /bin/bash -c "cd $PWD && pytest"
