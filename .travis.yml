@@ -8,7 +8,8 @@ env:
   - PATH=/usr/lib/ccache:$PATH
 
 cache:
-  - $HOME/.ccache
+  directories:
+    - $HOME/.ccache
 
 script:
   - export PATH=/usr/lib/ccache:$PATH
