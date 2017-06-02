@@ -2,20 +2,21 @@ language: python
 
 dist: trusty
 
-sudo: required
-
-services: docker
-
-python:
-  - 2.7
-  - 3.6
+sudo: false
 
 env:
-  - NUMPY_VERSION=1.7.1
-  - NUMPY_VERSION=1.12.1
+  - PATH=/usr/lib/ccache:$PATH
 
-cache: pip
+cache:
+  - $HOME/.ccache
 
-install: docker build -t test-container --build-arg numpy_version=$NUMPY_VERSION .
-
-script: docker run -v $PWD:$PWD test-container /bin/bash -c "cd $PWD && pytest"
+script:
+  - export PATH=/usr/lib/ccache:$PATH
+  - which gcc
+  - which g++
+  - echo 'before build'
+  - ccache -s
+  - echo 'int main() { int i = 1; }' > test.c
+  - gcc test.c -o test.o -c
+  - echo 'after build'
+  - ccache -s
