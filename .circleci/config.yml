@@ -1,0 +1,22 @@
+version: 2.0
+
+jobs:
+  "python2":
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run: python --version
+  "python3":
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run: python --version
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - "python2"
+      - "python3"
