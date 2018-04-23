@@ -6,4 +6,7 @@ python:
   - 2.7
   - 3.6
 
-script: py.test
+script:
+  - echo begin
+  - does_not_exist
+  - pytest
