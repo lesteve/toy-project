@@ -3,7 +3,11 @@ language: python
 dist: trusty
 
 python:
-  - 2.7
   - 3.6
 
-script: py.test
+script:
+  - set -e
+  - echo test
+
+after_script:
+  - asdf
