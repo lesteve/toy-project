@@ -6,7 +6,6 @@ python:
   - 3.6
 
 script:
-  - set -e
   - echo test
 
 after_script:
