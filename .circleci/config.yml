@@ -3,7 +3,7 @@ version: 2.0
 jobs:
   "python3":
     docker:
-      - image: buildpack-deps:trusty
+      - image: cimg/base
     steps:
       - checkout
       - run: mkdir cached
