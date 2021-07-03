@@ -13,7 +13,7 @@ jobs:
             - v1-{{ .Branch }}-{{ checksum "cached/commit" }}
             - v1-{{ .Branch }}
             - v1-master
-      - run: cat cached/checksum.txt
+      - run: cat cached/commit
       - run: python --version
       - save_cache:
           paths:
